@@ -7,11 +7,9 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -30,7 +28,7 @@ class MainActivity : ComponentActivity() {
             ScarletTrialTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Main(vm.messages)
+                    Main(vm.messages, onSend = vm::send)
                 }
             }
         }
@@ -38,23 +36,32 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Main(messageList: List<Message>){
+fun Main(
+    messageList: List<Message>,
+    onSend : (sendMessage: String) -> Unit
+){
+    var sendText by remember { mutableStateOf("")}
+
     Column(
         Modifier.fillMaxSize()
     ) {
-        Row() {
-            Button(
-                onClick = {}
-            ) {
-                Text(text = "Connect")
-            }
-            Spacer(
-                Modifier.width(10.dp)
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            OutlinedTextField(
+                value = sendText,
+                onValueChange = { sendText = it },
+                modifier = Modifier
+                    .weight(1.0f),
+                label = { Text("送信文字")}
             )
+
+            Spacer(modifier = Modifier.width(10.dp))
+
             Button(
-                onClick = {}
+                onClick = { onSend(sendText) },
             ) {
-                Text(text = "Disonnect")
+                Text(text = "Send")
             }
         }
 
@@ -71,6 +78,8 @@ fun Main(messageList: List<Message>){
 @Composable
 fun DefaultPreview() {
     ScarletTrialTheme {
-        Main(listOf(Message("aaa"), Message("bbb")))
+        Main(listOf(Message("aaa"), Message("bbb")),
+            onSend = { /* nothing */ }
+            )
     }
 }
