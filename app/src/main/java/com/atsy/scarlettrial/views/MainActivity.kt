@@ -23,6 +23,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val vm : MainActivityViewModel by viewModels()
+        vm.buildWebSocket(application)
 
         setContent {
             ScarletTrialTheme {

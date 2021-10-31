@@ -62,9 +62,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.8'
 
     implementation 'com.tinder.scarlet:scarlet:0.1.12'
-    implementation 'com.tinder.scarlet:websocket-okhttp:0.1.9'
-    implementation 'com.tinder.scarlet:message-adapter-gson:0.1.9'
-//    implementation project(':scarlet-lifecycle-android')
+    implementation 'com.tinder.scarlet:websocket-okhttp:0.1.12'
+    implementation 'com.tinder.scarlet:message-adapter-gson:0.1.12'
+    implementation 'com.tinder.scarlet:lifecycle-android:0.1.12'
 //    implementation project(':scarlet-message-adapter-protobuf')
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.2"
 

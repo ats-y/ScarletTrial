@@ -1,5 +1,6 @@
 package com.atsy.scarlettrial.viewmodels
 
+import android.app.Application
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import com.atsy.scarlettrial.models.Message
@@ -10,11 +11,15 @@ class MainActivityViewModel : ViewModel() {
     var messages = mutableStateListOf<Message>()
     var repo: MessageRepository? = null
 
-    fun send(sendMessage: String){
+    fun buildWebSocket(app: Application){
         if( repo == null ){
             repo = MessageRepository()
-            repo?.build()
+            repo?.build(app)
         }
+    }
+
+    fun send(sendMessage: String){
+
         repo?.service?.sendMessage(Message(sendMessage))
     }
 }
