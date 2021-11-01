@@ -6,5 +6,5 @@ import com.tinder.scarlet.ws.Send
 interface IWebSocketService {
 
     @Send
-    fun sendMessage(message: Message)
+    fun sendMessage(message: Message): Boolean
 }

@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import com.atsy.scarlettrial.models.Message
 import com.atsy.scarlettrial.repositories.MessageRepository
+import timber.log.Timber
 
 class MainActivityViewModel : ViewModel() {
 
@@ -20,6 +21,8 @@ class MainActivityViewModel : ViewModel() {
 
     fun send(sendMessage: String){
 
-        repo?.service?.sendMessage(Message(sendMessage))
+        if(repo?.sendMessage(Message(sendMessage)) != true){
+            Timber.d("false")
+        }
     }
 }

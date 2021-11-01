@@ -1,6 +1,7 @@
 package com.atsy.scarlettrial.repositories
 
 import android.app.Application
+import com.atsy.scarlettrial.models.Message
 import com.atsy.scarlettrial.sampleservice.IWebSocketService
 import com.google.gson.Gson
 import com.tinder.scarlet.Scarlet
@@ -32,5 +33,9 @@ class MessageRepository {
             .build()
 
         service = scarlet.create()
+    }
+
+    fun sendMessage(message: Message): Boolean{
+        return service.sendMessage(message)
     }
 }
